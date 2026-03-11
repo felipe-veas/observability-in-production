@@ -2,7 +2,7 @@
 
 ## 1. The Real Operational Problem
 
-The fundamental failure of most alerting strategies is a confusion of boundaries. Monitoring systems are frequently configured to page on the internal state of the infrastructure rather than the external experience of the user. This is an inversion of operational reality.
+The fundamental failure of most alerting strategies is a confusion of boundaries. Monitoring systems are frequently configured to page on the internal state of the infrastructure rather than the external experience of the user.
 
 The problem is that we're paging human beings because a machine crossed an arbitrary resource threshold. We treat high CPU utilization, memory pressure, or database lock contention as incidents in themselves. They aren't. They are attributes of a system under load.
 
@@ -10,7 +10,7 @@ An incident is only an incident if a user—whether that's a customer clicking a
 
 ## 2. Common Incorrect Approaches
 
-This pathology shows up most frequently in resource-based alerting:
+This problem shows up most frequently in resource-based alerting:
 
 **"CPU > 80% for 5 minutes"**
 This is perhaps the most common and useless alert in modern operations. High CPU utilization often just means you're getting exactly what you paid for from your compute provider. It only matters if it induces latency or errors.
@@ -26,7 +26,7 @@ Engineers often try to write alerts for every specific failure mode they've enco
 
 ## 3. Operational Consequences
 
-The consequences of cause-based, resource-centric alerting are devastating to both reliability and engineering morale.
+Cause-based, resource-centric alerting hurts reliability and burns out engineers.
 
 First, it generates massive false positives. If an engineer is paged at 2:00 AM because a database node hit 95% CPU, but the queries are still completing within acceptable latency bounds, the engineer has to log in, verify that users are unaffected, and then go back to sleep. This isn't incident response; it's manual babysitting of infrastructure.
 
@@ -60,6 +60,4 @@ When a pager fires, the system is stating: "Human judgment is urgently required 
 
 Engineers have to trust their tools. When an alert triggers, there should be zero ambiguity about whether an incident is occurring. The engineer shouldn't have to spend the first critical minutes of an outage trying to prove that the alert is real.
 
-By restricting alerts strictly to user-visible symptoms, we protect the cognitive load of the responder. They wake up knowing the pain is real. They can immediately transition from "Is this a false alarm?" to "Where is the failure originating?"
-
-We have to build monitoring that respects the human element. An engineer’s attention is finite and precious. We don't squander it on CPU spikes. We reserve it exclusively for the moments when our users are suffering.
+By restricting alerts strictly to user-visible symptoms, we protect the cognitive load of the responder. They wake up knowing the pain is real. They can immediately transition from "Is this a false alarm?" to "Where is the failure originating?" We don't squander their attention on CPU spikes; we reserve it exclusively for the moments when our users are suffering.
